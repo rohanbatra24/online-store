@@ -154,8 +154,6 @@ app.get('/cart', (req, res) => {
 	else {
 		res.redirect('/login');
 	}
-
-	// db.select('*').table('cart').where({ id: 1 }).then((data) => res.send(cart(data)));
 });
 
 app.get('/users', (req, res) => {
