@@ -34,22 +34,24 @@ module.exports = function() {
 <h3 class="text-info">Add a new product</h3>
     
   <body class="d-flex flex-column align-items-center">
-  <form class="w-50">
+  <form method='post' action='/admin/addproduct' class="w-50">
   <div class="form-group">
-    <label for="exampleInputEmail1">Product Title</label>
-    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="">
+    <label for="product">Product Title</label>
+    <input type="text" name='title' class="form-control" id="product" placeholder="">
   </div>
   <div class="form-group">
-    <label for="exampleInputPassword1">Price (CAD)</label>
-    <input type="number" class="form-control" id="exampleInputPassword1" placeholder="">
+    <label for="price">Price (CAD)</label>
+    <input type="number" name='price' class="form-control" id="exampleInputPassword1" placeholder="">
   </div>
   <div class="form-group">
-    <label for="exampleInputPassword1">Category</label>
-    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="">
-  </div>
-  <div class="form-check">
-    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-    <label class="form-check-label" for="exampleCheck1">Check me out</label>
+    <label for="category">Category</label>
+    <select name="category" id="category">
+    <option value="" disabled selected>Select one..</option>
+    <option value="Clothes">Clothes</option>
+    <option value="Bags">Bags</option>
+    <option value="Shoes">Shoes</option>
+    <option value="Belts">Belts</option>
+    </select>
   </div>
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>
