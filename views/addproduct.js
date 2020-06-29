@@ -41,7 +41,7 @@ module.exports = function() {
   </div>
   <div class="form-group">
     <label for="price">Price (CAD)</label>
-    <input type="number" name='price' class="form-control" id="exampleInputPassword1" placeholder="">
+    <input type="number" name='price' class="form-control" id="price" placeholder="">
   </div>
   <div class="form-group">
     <label for="category">Category</label>
