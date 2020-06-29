@@ -1,4 +1,15 @@
-module.exports = function() {
+module.exports = function(products) {
+	const productList = products
+		.map((product) => {
+			return `
+        <tr>
+            <td class="pv3 pr3 bb b--black-20">${product.title}</td>
+            <td class="pv3 pr3 bb b--black-20">${product.price}</td>
+            <td class="pv3 pr3 bb b--black-20"><form method= 'POST' action="/admin/deleteproduct"> <button class="btn-sm btn-danger">Delete</button></form></td>
+          </tr>`;
+		})
+		.join('');
+
 	return `
     <!DOCTYPE html>
     <html lang="en">    
@@ -28,25 +39,38 @@ module.exports = function() {
   </nav>
   
 </header>
+
+
     
   <body class="d-flex flex-column align-items-center">
-  <form class="w-50">
-  <div class="form-group">
-    <label for="exampleInputEmail1">Email address</label>
-    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+  <h1 class="mt2 mb0 f6 fw4 ttu tracked">ADMIN PANEL</h1>
+        
+  <div class="pa4">
+  <div class="overflow-auto">
+    <table class="f6 w-100 mw8 center" cellspacing="0">
+      <thead>
+        <tr>
+          <th class="fw6 bb b--black-20 tl pb3 pr3 bg-white">Product</th>
+          <th class="fw6 bb b--black-20 tl pb3 pr3 bg-white">Price</th>
+          
+        </tr>
+      </thead>
+      <tbody class="lh-copy">
+      ${productList}
+      <tr>
+        <td class="pv3 pr3 bb b--black-20"><a href="/admin/addproducts" class="btn btn-info">Add a product</a></td>
+        <td class="pv3 pr3 bb b--black-20"></td>
+        <td class="pv3 pr3 bb b--black-20"></td>
+      </tr>
+      </tbody>
+
+      </table>
   </div>
-  <div class="form-group">
-    <label for="exampleInputPassword1">Password</label>
-    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
   </div>
-  <div class="form-check">
-    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-    <label class="form-check-label" for="exampleCheck1">Check me out</label>
-  </div>
-  <button type="submit" class="btn btn-primary">Submit</button>
-</form>
-    
+
+
+        
+        
     </body>
     <footer class="pv4 ph3 ph5-m ph6-l mid-gray">
     <small class="f6 db tc">© 2016 <b class="ttu">SOME COMPANY Inc</b>., All Rights Reserved</small>
