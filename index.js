@@ -177,6 +177,14 @@ app.get('/admin/addproduct', (req, res) => {
 	res.send(addProduct());
 });
 
+app.post('/admin/deleteproduct/:id', (req, res) => {
+	db('products')
+		.where({ id: req.params.id })
+		.del()
+		.then(() => res.redirect('/admin'))
+		.catch((err) => console.log('err', err));
+});
+
 app.post('/admin/addproduct', (req, res) => {
 	console.log(req.body);
 
