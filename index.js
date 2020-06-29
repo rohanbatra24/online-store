@@ -173,7 +173,7 @@ app.get('/admin', (req, res) => {
 	db.select('*').table('products').then((products) => res.send(admin(products)));
 });
 
-app.get('/admin/addproducts', (req, res) => {
+app.get('/admin/addproduct', (req, res) => {
 	res.send(addProduct());
 });
 
