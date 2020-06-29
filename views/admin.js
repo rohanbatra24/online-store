@@ -5,7 +5,7 @@ module.exports = function(products) {
         <tr>
             <td class="pv3 pr3 bb b--black-20">${product.title}</td>
             <td class="pv3 pr3 bb b--black-20">${product.price}</td>
-            <td class="pv3 pr3 bb b--black-20"><form method= 'POST' action="/admin/deleteproduct"> <button class="btn-sm btn-danger">Delete</button></form></td>
+            <td class="pv3 pr3 bb b--black-20"><form method='POST' action="/admin/deleteproduct/${product.id}"> <button type='submit' class="btn-sm btn-danger">Delete</button></form></td>
           </tr>`;
 		})
 		.join('');
