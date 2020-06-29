@@ -1,4 +1,9 @@
-module.exports = function() {
+module.exports = function(categories) {
+	const categoriesList = categories.map((category) => {
+		return `
+    <option value="${category}">${category}</option>`;
+	});
+
 	return `
     <!DOCTYPE html>
     <html lang="en">    
@@ -47,10 +52,7 @@ module.exports = function() {
     <label for="category">Category</label>
     <select name="category" id="category">
     <option value="" disabled selected>Select one..</option>
-    <option value="Clothes">Clothes</option>
-    <option value="Bags">Bags</option>
-    <option value="Shoes">Shoes</option>
-    <option value="Belts">Belts</option>
+    ${categoriesList}
     </select>
   </div>
   <button type="submit" class="btn btn-primary">Submit</button>
