@@ -34,6 +34,8 @@ const cart = require('./views/cart');
 
 const login = require('./views/login');
 
+const admin = require('./views/admin');
+
 app.get('/', (req, res) => {
 	const cookie = req.cookies;
 
@@ -47,6 +49,11 @@ app.get('/', (req, res) => {
 
 app.get('/login', (req, res) => {
 	res.send(login());
+});
+
+app.get('/logout', (req, res) => {
+	res.clearCookie('userId');
+	res.redirect('/');
 });
 
 app.post('/login', (req, res) => {
@@ -158,6 +165,10 @@ app.get('/cart', (req, res) => {
 
 app.get('/users', (req, res) => {
 	db.select('*').table('users').then((data) => res.send(data));
+});
+
+app.get('/admin', (req, res) => {
+	res.send(admin());
 });
 
 app.listen(3000, () => {
