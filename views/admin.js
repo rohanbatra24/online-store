@@ -58,7 +58,7 @@ module.exports = function(products) {
       <tbody class="lh-copy">
       ${productList}
       <tr>
-        <td class="pv3 pr3 bb b--black-20"><a href="/admin/addproducts" class="btn btn-info">Add a product</a></td>
+        <td class="pv3 pr3 bb b--black-20"><a href="/admin/addproduct" class="btn btn-info">Add a product</a></td>
         <td class="pv3 pr3 bb b--black-20"></td>
         <td class="pv3 pr3 bb b--black-20"></td>
       </tr>
