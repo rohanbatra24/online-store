@@ -1,39 +1,27 @@
+const layout = require('./layout');
+
 module.exports = function() {
-	return `<article class="br3 ba b--black-10 mv4 w-100 w-50-m w-25-l mw6 shadow-5 center">
-    <main className="pa4 black-80">
-        <div class="measure">
-            <form method='POST' action='/login'>
-            <fieldset id="sign_up" class="ba b--transparent ph0 mh0">
-                <legend class="f1 fw6 ph0 mh0">Sign In</legend>
-                <div class="mt3">
-                    <label class="db fw6 lh-copy f6" htmlFor="email-address">
-                        Email
-                    </label>
-                    <input
-                        class="pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100"
-                        type="email"
-                        name="email"
-                    />
-                </div>
-                <div class="mv3">
-                    <label class="db fw6 lh-copy f6" htmlFor="password">
-                        Password
-                    </label>
-                    <input
-                        class="b pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100"
-                        type="password"
-                        name="password"
-                    />
-                </div>
-            </fieldset>
-            <div class="">
-                <button
-                    class="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib"
-                    type="submit"> Sign in
-                <button/>
-            </div>
-            </form>
+	return layout(`
+    
+    <main class="d-flex flex-column align-items-center">
+    <form method='POST' action='/login'>
+        <div class="form-group">
+            <label for="exampleInputEmail1">Email address</label>
+            <input type="email" class="form-control" id="exampleInputEmail1" name="email" aria-describedby="emailHelp" placeholder="Enter email">
+            <small id="emailHelp" class="form-text text-muted">We will never share your email with anyone else.</small>
         </div>
-    </main>
-</article>`;
+
+        <div class="form-group">
+        <label for="exampleInputPassword1">Password</label>
+        <input type="password" class="form-control" name="password" id="exampleInputPassword1" placeholder="Password">
+        </div>
+
+        <div class="form-check">
+        <input type="checkbox" class="form-check-input" id="exampleCheck1">
+        <label class="form-check-label" for="exampleCheck1">Remember me</label>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Sign In</button>
+    </form>
+    </main>`);
 };
