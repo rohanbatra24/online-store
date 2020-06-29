@@ -170,7 +170,15 @@ app.get('/users', (req, res) => {
 app.get('/admin', (req, res) => {
 	res.send(admin());
 });
+app.post('/admin/addproduct', (req, res) => {
+	console.log(req.body);
 
+	const { title, price } = req.body;
+
+	db('products').insert({ title: title, price: price }).returning('*').then((data) => {
+		res.send(data);
+	});
+});
 app.listen(3000, () => {
 	console.log('App listening on port 3000!');
 });
