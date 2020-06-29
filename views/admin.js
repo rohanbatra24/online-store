@@ -4,6 +4,7 @@ module.exports = function(products) {
 			return `
         <tr>
             <td class="pv3 pr3 bb b--black-20">${product.title}</td>
+            <td class="pv3 pr3 bb b--black-20">${product.name}</td>
             <td class="pv3 pr3 bb b--black-20">${product.price}</td>
             <td class="pv3 pr3 bb b--black-20"><form method='POST' action="/admin/deleteproduct/${product.id}"> <button type='submit' class="btn-sm btn-danger">Delete</button></form></td>
           </tr>`;
@@ -51,6 +52,7 @@ module.exports = function(products) {
       <thead>
         <tr>
           <th class="fw6 bb b--black-20 tl pb3 pr3 bg-white">Product</th>
+          <th class="fw6 bb b--black-20 tl pb3 pr3 bg-white">Category</th>
           <th class="fw6 bb b--black-20 tl pb3 pr3 bg-white">Price</th>
           
         </tr>
@@ -59,6 +61,7 @@ module.exports = function(products) {
       ${productList}
       <tr>
         <td class="pv3 pr3 bb b--black-20"><a href="/admin/addproduct" class="btn btn-info">Add a product</a></td>
+        <td class="pv3 pr3 bb b--black-20"><a href="/admin/addcategory" class="btn btn-info">Add a category</a></td>
         <td class="pv3 pr3 bb b--black-20"></td>
         <td class="pv3 pr3 bb b--black-20"></td>
       </tr>
