@@ -36,6 +36,8 @@ const login = require('./views/login');
 
 const admin = require('./views/admin');
 
+const addProduct = require('./views/addproduct');
+
 app.get('/', (req, res) => {
 	const cookie = req.cookies;
 
@@ -168,15 +170,20 @@ app.get('/users', (req, res) => {
 });
 
 app.get('/admin', (req, res) => {
-	res.send(admin());
+	db.select('*').table('products').then((products) => res.send(admin(products)));
 });
+
+app.get('/admin/addproducts', (req, res) => {
+	res.send(addProduct());
+});
+
 app.post('/admin/addproduct', (req, res) => {
 	console.log(req.body);
 
 	const { title, price } = req.body;
 
 	db('products').insert({ title: title, price: price }).returning('*').then((data) => {
-		res.send(data);
+		res.redirect('/admin');
 	});
 });
 app.listen(3000, () => {
