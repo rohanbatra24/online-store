@@ -38,6 +38,10 @@ const admin = require('./views/admin');
 
 const addProduct = require('./views/addproduct');
 
+const categories = require('./views/categories');
+
+const addcategory = require('./views/addCategory');
+
 app.get('/', (req, res) => {
 	const cookie = req.cookies;
 
@@ -170,11 +174,43 @@ app.get('/users', (req, res) => {
 });
 
 app.get('/admin', (req, res) => {
-	db.select('*').table('products').then((products) => res.send(admin(products)));
+	const categories = [];
+
+	db
+		.select('name')
+		.table('categories')
+		.then((data) => {
+			for (let key of data) {
+				categories.push(key.name);
+			}
+		})
+		.then(() => {
+			db
+				.select('products.id', 'title', 'image', 'price', 'category_id', 'name')
+				.table('products')
+				.join('categories', 'categories.id', '=', 'category_id')
+				.then((products) => {
+					res.send(admin(products));
+				})
+				.catch((err) => console.log('err', err));
+		})
+		.catch((err) => console.log('err', err));
 });
 
 app.get('/admin/addproduct', (req, res) => {
-	res.send(addProduct());
+	const categories = [];
+
+	db.select('name').table('categories').then((data) => {
+		for (let key of data) {
+			categories.push(key.name);
+		}
+
+		res.send(addProduct(categories));
+	});
+});
+
+app.get('/admin/addcategory', (req, res) => {
+	res.send(addcategory());
 });
 
 app.post('/admin/deleteproduct/:id', (req, res) => {
@@ -188,12 +224,32 @@ app.post('/admin/deleteproduct/:id', (req, res) => {
 app.post('/admin/addproduct', (req, res) => {
 	console.log(req.body);
 
-	const { title, price } = req.body;
+	const { title, price, category } = req.body;
 
-	db('products').insert({ title: title, price: price }).returning('*').then((data) => {
-		res.redirect('/admin');
+	db('categories').where({ name: category }).then((category) => {
+		db('products')
+			.insert({ title: title, price: price, category_id: category[0].id })
+			.returning('*')
+			.then((data) => {
+				res.redirect('/admin');
+			});
 	});
 });
+
+app.post('/admin/addcategory', (req, res) => {
+	console.log(req.body);
+
+	const { name } = req.body;
+
+	db('categories').insert({ name: name }).returning('*').then((data) => {
+		res.redirect('/categories');
+	});
+});
+
+app.get('/categories', (req, res) => {
+	db.select('*').table('categories').then((categoriesList) => res.send(categories(categoriesList)));
+});
+
 app.listen(3000, () => {
 	console.log('App listening on port 3000!');
 });
