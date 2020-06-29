@@ -40,6 +40,8 @@ const addProduct = require('./views/addproduct');
 
 const categories = require('./views/categories');
 
+const adminCategories = require('./views/adminCategories');
+
 const addcategory = require('./views/addCategory');
 
 app.get('/', (req, res) => {
@@ -244,6 +246,10 @@ app.post('/admin/addcategory', (req, res) => {
 	db('categories').insert({ name: name }).returning('*').then((data) => {
 		res.redirect('/categories');
 	});
+});
+
+app.get('/admin/categories', (req, res) => {
+	db.select('*').table('categories').then((categoriesList) => res.send(adminCategories(categoriesList)));
 });
 
 app.get('/categories', (req, res) => {
