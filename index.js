@@ -8,6 +8,10 @@ app.use(cors());
 
 const knex = require('knex');
 
+const multer = require('multer');
+
+const upload = multer({ storage: multer.memoryStorage() });
+
 const bodyParser = require('body-parser');
 
 const cookieParser = require('cookie-parser');
@@ -233,14 +237,17 @@ app.post('/admin/deleteproduct/:id', (req, res) => {
 		.catch((err) => console.log('err', err));
 });
 
-app.post('/admin/addproduct', (req, res) => {
+app.post('/admin/addproduct', upload.single('image'), (req, res) => {
+	// console.log(req.file.buffer.toString('base64'));
 	console.log(req.body);
 
-	const { title, price, category } = req.body;
+	const { title, price, image, category } = req.body;
+
+	console.log('category', category);
 
 	db('categories').where({ name: category }).then((category) => {
 		db('products')
-			.insert({ title: title, price: price, category_id: category[0].id })
+			.insert({ title: title, price: price, category_id: category[0].id, image: image })
 			.returning('*')
 			.then((data) => {
 				res.redirect('/admin');
@@ -293,6 +300,12 @@ app.post('/removecartitem/:id', (req, res) => {
 			}
 		})
 		.catch((err) => console.log('err', err));
+});
+
+app.post('/upload', upload.single('avatar'), function(req, res, next) {
+	// req.file is the `avatar` file
+	console.log(req.file);
+	// req.body will hold the text fields, if there were any
 });
 
 app.listen(3000, () => {
