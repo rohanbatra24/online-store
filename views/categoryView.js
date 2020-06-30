@@ -1,6 +1,6 @@
 const layout = require('./layout');
 
-module.exports = function(products) {
+module.exports = function(user, products) {
 	const productList = products
 		.map((product) => {
 			return `
@@ -30,7 +30,10 @@ module.exports = function(products) {
 		})
 		.join('');
 
-	return layout(`<div class="tc">
+	return layout(
+		user,
+		`<div class="tc">
     <ul class="flex flex-wrap justify-around">${productList}</ul>
-</div>`);
+</div>`
+	);
 };

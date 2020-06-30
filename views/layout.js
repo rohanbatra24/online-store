@@ -1,4 +1,21 @@
-module.exports = function(coreView) {
+module.exports = function(cookie, coreView) {
+	function renderAuth() {
+		if (cookie) {
+			return `
+            <a href='logout'><button type="button" class="btn btn-info btn-sm m-4">
+          <span class="glyphicon glyphicon-log-out" id='logoutBtn'></span> Log out
+        </button></a>
+            `;
+		}
+		else {
+			return `
+            <a href='/login'><button type="button" class="btn btn-info btn-sm m-4">
+          <span class="glyphicon glyphicon-log-out" id='loginBtn'></span> Log In
+        </button></a>
+            `;
+		}
+	}
+
 	return `
     <!DOCTYPE html>
         <html lang="en">  
@@ -14,7 +31,9 @@ module.exports = function(coreView) {
         <header class="bg-white black-80 tc pv4 avenir">
             
 
-            <div class="dropdown float-right m-4 position-absolute">
+            <div class='d-flex justify-content-between align-items-center'>
+
+            <div class="dropdown m-4">
             <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Admin
             </button>
@@ -25,18 +44,31 @@ module.exports = function(coreView) {
             </div>
             </div>
 
+            
+            
+            <div class='d-flex flex-column'>
             <h1 class="mt2 mb0 baskerville i fw1 f1">E-Commerce App</h1>
-
+            
             <h2 class="mt2 mb0 f6 fw4 ttu tracked">one-stop shop</h2>
-
-
+            
             <nav class="bt bb tc mw7 center mt4">
-                <a class="f6 f5-l link bg-animate black-80 hover-bg-lightest-blue dib pa3 ph4-l" href="/">Home</a>
-                <a class="f6 f5-l link bg-animate black-80 hover-bg-light-blue dib pa3 ph4-l" href="/categories">Categories</a>
-                <a class="f6 f5-l link bg-animate black-80 hover-bg-light-pink dib pa3 ph4-l" href="/cart">Cart</a>
-                <a class="f6 f5-l link bg-animate black-80 hover-bg-light-yellow dib pa3 ph4-l" href="/login">Login</a>
-                <a class="f6 f5-l link bg-animate black-80 hover-bg-light-yellow dib pa3 ph4-l" href="/logout">Logout</a>
+            <a class="text-decoration-none f6 f5-l link bg-animate black-80 hover-bg-lightest-blue dib pa3 ph4-l" href="/">Home</a>
+            <a class="text-decoration-none f6 f5-l link bg-animate black-80 hover-bg-light-green dib pa3 ph4-l" href="/categories">Categories</a>
+            <a class="text-decoration-none f6 f5-l link bg-animate black-80 hover-bg-light-pink dib pa3 ph4-l" href="/cart">Cart</a>
+            <a class="text-decoration-none f6 f5-l link bg-animate black-80 hover-bg-light-yellow dib pa3 ph4-l" href="/contact">Locations</a>
+            <a class="text-decoration-none f6 f5-l link bg-animate black-80 hover-bg-light-blue dib pa3 ph4-l" href="/about">About Us</a>
+
+            
             </nav>
+            
+            </div>
+            
+            ${renderAuth()}
+        
+
+        
+
+        </div>
         </header>
 
         <body>

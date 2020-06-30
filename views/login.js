@@ -1,9 +1,12 @@
 const layout = require('./layout');
 
-module.exports = function() {
-	return layout(`
+module.exports = function(user) {
+	return layout(
+		user,
+		`
     
     <main class="d-flex flex-column align-items-center">
+    <h2 class="text-center p-2">Please log in</h2>
     <form method='POST' action='/login'>
         <div class="form-group">
             <label for="exampleInputEmail1">Email address</label>
@@ -23,5 +26,6 @@ module.exports = function() {
 
         <button type="submit" class="btn btn-primary">Sign In</button>
     </form>
-    </main>`);
+    </main>`
+	);
 };

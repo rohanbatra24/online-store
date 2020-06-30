@@ -1,6 +1,6 @@
 const layout = require('./layout');
 
-module.exports = function(cart) {
+module.exports = function(user, cart) {
 	let GrandTotal = 0;
 
 	const cartList = cart
@@ -20,7 +20,10 @@ module.exports = function(cart) {
 		})
 		.join('');
 
-	return layout(`
+	return layout(
+		user,
+		`
+    
   <div class="pa4">
   <div class="overflow-auto">
     <table class="f6 w-100 mw8 center" cellspacing="0">
@@ -45,5 +48,6 @@ module.exports = function(cart) {
       </table>
   </div>
   </div>
-  `);
+  `
+	);
 };

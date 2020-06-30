@@ -1,6 +1,6 @@
 const layout = require('./layout');
 
-module.exports = function(categories) {
+module.exports = function(user, categories) {
 	const categoryList = categories
 		.map((category) => {
 			return `
@@ -12,7 +12,9 @@ module.exports = function(categories) {
 		})
 		.join('');
 
-	return layout(`
+	return layout(
+		user,
+		`
 
   <div class="d-flex flex-column align-items-center">
   <h1 class="mt2 mb0 f6 fw4 ttu tracked">ADMIN PANEL</h1>
@@ -41,5 +43,6 @@ module.exports = function(categories) {
   </div>
 
   </div>
-    `);
+    `
+	);
 };

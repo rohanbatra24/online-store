@@ -1,12 +1,14 @@
 const layout = require('./layout');
 
-module.exports = function(categories) {
+module.exports = function(user, categories) {
 	const categoriesList = categories.map((category) => {
 		return `
     <option value="${category}">${category}</option>`;
 	});
 
-	return layout(`
+	return layout(
+		user,
+		`
   
 
 
@@ -55,5 +57,6 @@ module.exports = function(categories) {
   </div>
     
 
-  `);
+  `
+	);
 };

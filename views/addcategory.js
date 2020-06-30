@@ -1,7 +1,9 @@
 const layout = require('./layout');
 
-module.exports = function() {
-	return layout(`
+module.exports = function(user) {
+	return layout(
+		user,
+		`
   <body class="d-flex flex-column align-items-center">
     
     <form method='post' action='/admin/addCategory' class="w-50">
@@ -13,5 +15,6 @@ module.exports = function() {
 </form>
 </body>
 
-    `);
+    `
+	);
 };

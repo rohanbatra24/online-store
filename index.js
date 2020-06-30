@@ -54,7 +54,7 @@ app.get('/', (req, res) => {
 	const cookie = req.cookies;
 
 	if (cookie.userId) {
-		db.select('*').table('products').then((products) => res.send(homepage(products)));
+		db.select('*').table('products').then((products) => res.send(homepage(cookie, products)));
 	}
 	else {
 		res.redirect('/login');
@@ -62,7 +62,7 @@ app.get('/', (req, res) => {
 });
 
 app.get('/login', (req, res) => {
-	res.send(login());
+	res.send(login(req.cookies.userId));
 });
 
 app.get('/logout', (req, res) => {
@@ -152,14 +152,6 @@ app.post('/addtocart/:id', (req, res) => {
 	res.redirect('/');
 });
 
-app.get('/cartItems', (req, res) => {
-	db.select('*').table('cartitems').then((data) => res.send(data));
-});
-
-app.get('/products', (req, res) => {
-	db.select('*').table('products').then((data) => res.send(data));
-});
-
 app.get('/cart', (req, res) => {
 	const cookie = req.cookies;
 
@@ -170,15 +162,11 @@ app.get('/cart', (req, res) => {
 			.from('cart')
 			.where({ user_id: cookie.userId })
 			.select('*', 'cartitems.id')
-			.then((data) => res.send(cart(data)));
+			.then((data) => res.send(cart(req.cookies.userId, data)));
 	}
 	else {
 		res.redirect('/login');
 	}
-});
-
-app.get('/users', (req, res) => {
-	db.select('*').table('users').then((data) => res.send(data));
 });
 
 app.get('/admin', (req, res) => {
@@ -198,7 +186,7 @@ app.get('/admin', (req, res) => {
 				.table('products')
 				.join('categories', 'categories.id', '=', 'category_id')
 				.then((products) => {
-					res.send(admin(products));
+					res.send(admin(req.cookies.userId, products));
 				})
 				.catch((err) => console.log('err', err));
 		})
@@ -213,12 +201,12 @@ app.get('/admin/addproduct', (req, res) => {
 			categories.push(key.name);
 		}
 
-		res.send(addProduct(categories));
+		res.send(addProduct(req.cookies.userId, categories));
 	});
 });
 
 app.get('/admin/addcategory', (req, res) => {
-	res.send(addcategory());
+	res.send(addcategory(req.cookies.userId));
 });
 
 app.post('/admin/deletecategory/:id', (req, res) => {
@@ -239,7 +227,6 @@ app.post('/admin/deleteproduct/:id', (req, res) => {
 
 app.post('/admin/addproduct', upload.single('image'), (req, res) => {
 	// console.log(req.file.buffer.toString('base64'));
-	console.log(req.body);
 
 	const { title, price, image, category } = req.body;
 
@@ -256,8 +243,6 @@ app.post('/admin/addproduct', upload.single('image'), (req, res) => {
 });
 
 app.post('/admin/addcategory', (req, res) => {
-	console.log(req.body);
-
 	const { name } = req.body;
 
 	db('categories').insert({ name: name }).returning('*').then((data) => {
@@ -266,11 +251,17 @@ app.post('/admin/addcategory', (req, res) => {
 });
 
 app.get('/admin/categories', (req, res) => {
-	db.select('*').table('categories').then((categoriesList) => res.send(adminCategories(categoriesList)));
+	db
+		.select('*')
+		.table('categories')
+		.then((categoriesList) => res.send(adminCategories(req.cookies.userId, categoriesList)));
 });
 
 app.get('/categories', (req, res) => {
-	db.select('*').table('categories').then((categoriesList) => res.send(categories(categoriesList)));
+	db
+		.select('*')
+		.table('categories')
+		.then((categoriesList) => res.send(categories(req.cookies.userId, categoriesList)));
 });
 
 app.get('/categories/:id', (req, res) => {
@@ -281,7 +272,7 @@ app.get('/categories/:id', (req, res) => {
 		.table('categories')
 		.join('products', 'categories.id', '=', 'category_id')
 		.where({ category_id: catId })
-		.then((products) => res.send(categoryView(products)));
+		.then((products) => res.send(categoryView(req.cookies.userId, products)));
 });
 
 app.post('/removecartitem/:id', (req, res) => {
