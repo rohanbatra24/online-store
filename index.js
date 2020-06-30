@@ -44,6 +44,8 @@ const adminCategories = require('./views/adminCategories');
 
 const addcategory = require('./views/addCategory');
 
+const categoryView = require('./views/categoryView');
+
 app.get('/', (req, res) => {
 	const cookie = req.cookies;
 
@@ -163,7 +165,7 @@ app.get('/cart', (req, res) => {
 			.join('products', 'products.id', '=', 'product_id')
 			.from('cart')
 			.where({ user_id: cookie.userId })
-			.select('*')
+			.select('*', 'cartitems.id')
 			.then((data) => res.send(cart(data)));
 	}
 	else {
@@ -215,6 +217,14 @@ app.get('/admin/addcategory', (req, res) => {
 	res.send(addcategory());
 });
 
+app.post('/admin/deletecategory/:id', (req, res) => {
+	db('categories')
+		.where({ id: req.params.id })
+		.del()
+		.then(() => res.redirect('/admin/categories'))
+		.catch((err) => console.log('err', err));
+});
+
 app.post('/admin/deleteproduct/:id', (req, res) => {
 	db('products')
 		.where({ id: req.params.id })
@@ -264,7 +274,25 @@ app.get('/categories/:id', (req, res) => {
 		.table('categories')
 		.join('products', 'categories.id', '=', 'category_id')
 		.where({ category_id: catId })
-		.then((products) => res.send(products));
+		.then((products) => res.send(categoryView(products)));
+});
+
+app.post('/removecartitem/:id', (req, res) => {
+	id = req.params.id;
+
+	db('cartitems')
+		.where({ id: id })
+		.decrement('quantity', 1)
+		.returning('quantity')
+		.then((qty) => {
+			if (qty[0] < 1) {
+				db('cartitems').where({ id: id }).del().then(() => res.redirect('/cart'));
+			}
+			else {
+				res.redirect('/cart');
+			}
+		})
+		.catch((err) => console.log('err', err));
 });
 
 app.listen(3000, () => {
