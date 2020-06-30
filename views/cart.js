@@ -14,7 +14,7 @@ module.exports = function(cart) {
 	      <td class="pv3 pr3 bb b--black-20">${item.price} x ${item.quantity} = $${Number(
 				item.price.replace(/[^0-9\.-]+/g, '')
 			) * item.quantity}</td>
-      <td class="pv3 pr3 bb b--black-20"><button class="btn">Remove</button></td>
+      <td class="pv3 pr3 bb b--black-20"><form method='POST' action="/removecartitem/${item.id}"> <button type='submit' class="btn-sm btn-warning">Remove</button></form></td>
 	    </tr>
     `;
 		})
