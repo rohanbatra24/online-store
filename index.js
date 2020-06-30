@@ -256,6 +256,17 @@ app.get('/categories', (req, res) => {
 	db.select('*').table('categories').then((categoriesList) => res.send(categories(categoriesList)));
 });
 
+app.get('/categories/:id', (req, res) => {
+	catId = req.params.id;
+
+	db
+		.select('*')
+		.table('categories')
+		.join('products', 'categories.id', '=', 'category_id')
+		.where({ category_id: catId })
+		.then((products) => res.send(products));
+});
+
 app.listen(3000, () => {
 	console.log('App listening on port 3000!');
 });
