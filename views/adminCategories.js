@@ -13,7 +13,8 @@ module.exports = function(categories) {
 		.join('');
 
 	return layout(`
-    <body class="d-flex flex-column align-items-center">
+
+  <div class="d-flex flex-column align-items-center">
   <h1 class="mt2 mb0 f6 fw4 ttu tracked">ADMIN PANEL</h1>
         
   <div class="pa4">
@@ -39,9 +40,6 @@ module.exports = function(categories) {
   </div>
   </div>
 
-
-        
-        
-    </body>
+  </div>
     `);
 };
