@@ -7,7 +7,7 @@ module.exports = function(categories) {
         <tr>
             <td class="pv3 pr3 bb b--black-20">${category.name}</td>
             <td class="pv3 pr3 bb b--black-20"># of items</td>
-            <td class="pv3 pr3 bb b--black-20"><form method='POST' action="/admin/deleteproduct/${category.id}"> <button type='submit' class="btn-sm btn-danger">Delete</button></form></td>
+            <td class="pv3 pr3 bb b--black-20"><form method='POST' action="/admin/deletecategory/${category.id}"> <button type='submit' class="btn-sm btn-danger">Delete</button></form></td>
           </tr>`;
 		})
 		.join('');
