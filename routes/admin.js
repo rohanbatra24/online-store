@@ -29,7 +29,7 @@ router.get('/admin', (req, res) => {
 				.table('products')
 				.join('categories', 'categories.id', '=', 'category_id')
 				.then((products) => {
-					res.send(admin(req.cookies.userName, products));
+					res.send(admin(req.session.userName, products));
 				})
 				.catch((err) => console.log('err', err));
 		})
@@ -44,12 +44,12 @@ router.get('/admin/addproduct', (req, res) => {
 			categories.push(key.name);
 		}
 
-		res.send(addProduct(req.cookies.userName, categories));
+		res.send(addProduct(req.session.userName, categories));
 	});
 });
 
 router.get('/admin/addcategory', (req, res) => {
-	res.send(addcategory(req.cookies.userName));
+	res.send(addcategory(req.session.userName));
 });
 
 router.post('/admin/deletecategory/:id', (req, res) => {
@@ -93,7 +93,7 @@ router.get('/admin/categories', (req, res) => {
 	db
 		.select('*')
 		.table('categories')
-		.then((categoriesList) => res.send(adminCategories(req.cookies.userName, categoriesList)));
+		.then((categoriesList) => res.send(adminCategories(req.session.userName, categoriesList)));
 });
 
 module.exports = router;
