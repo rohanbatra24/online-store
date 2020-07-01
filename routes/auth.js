@@ -67,10 +67,14 @@ router.post(
 		validators.requirePasswordConfirmation
 	],
 	async (req, res) => {
-		const { name, email, password, passwordConfirmation } = req.body;
+		const { name, email, password } = req.body;
 
 		const errors = validationResult(req);
-		console.log('errors', errors);
+		console.log('errors', errors.mapped());
+
+		if (!errors.isEmpty()) {
+			return res.send(signup(errors.mapped()));
+		}
 
 		const salt = crypto.randomBytes(8).toString('hex');
 
