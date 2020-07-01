@@ -17,7 +17,7 @@ module.exports = function(user, categories) {
   <h3 class="text-info">Add a new product</h3>
 
   
-  <form class='w-50'method='post' action='/admin/addproduct' enctype='multipart/form-data'>
+  <form class='w-50'method='post' action='/admin/addproduct'>
 
  
 
