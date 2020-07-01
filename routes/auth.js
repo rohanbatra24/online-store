@@ -2,6 +2,8 @@ const express = require('express');
 
 const router = express.Router();
 
+const { check, validationResult } = require('express-validator');
+
 const crypto = require('crypto');
 
 const util = require('util'); // to promisify scrypt result
@@ -13,6 +15,8 @@ const login = require('../views/auth/login');
 const signup = require('../views/auth/signup');
 
 const { db } = require('./db/database');
+
+const validators = require('./validators');
 
 router.get('/login', (req, res) => {
 	res.send(login(req.session.userName));
@@ -54,22 +58,34 @@ router.get('/signup', (req, res) => {
 	res.send(signup());
 });
 
-router.post('/signup', async (req, res) => {
-	const { name, email, password, passwordConfirmation } = req.body;
+router.post(
+	'/signup',
+	[
+		validators.requireName,
+		validators.requireEmail,
+		validators.requirePassword,
+		validators.requirePasswordConfirmation
+	],
+	async (req, res) => {
+		const { name, email, password, passwordConfirmation } = req.body;
 
-	const salt = crypto.randomBytes(8).toString('hex');
+		const errors = validationResult(req);
+		console.log('errors', errors);
 
-	//scrypt returns a promise (dont need callback) because of util promisify at the top
-	const hashedBuffer = await scrypt(password, salt, 64);
+		const salt = crypto.randomBytes(8).toString('hex');
 
-	db('users')
-		.insert({ name: name, email: email, password: `${hashedBuffer.toString('hex')}.${salt}` })
-		.returning('*')
-		.then((data) => {
-			req.session = { userId: data[0].id, userName: data[0].name };
-			res.redirect('/');
-		})
-		.catch((err) => console.log('err', err));
-});
+		//scrypt returns a promise (dont need callback) because of util promisify at the top
+		const hashedBuffer = await scrypt(password, salt, 64);
+
+		db('users')
+			.insert({ name: name, email: email, password: `${hashedBuffer.toString('hex')}.${salt}` })
+			.returning('*')
+			.then((data) => {
+				req.session = { userId: data[0].id, userName: data[0].name };
+				res.redirect('/');
+			})
+			.catch((err) => console.log('err', err));
+	}
+);
 
 module.exports = router;
