@@ -69,11 +69,7 @@ router.post('/admin/deleteproduct/:id', (req, res) => {
 });
 
 router.post('/admin/addproduct', (req, res) => {
-	// console.log(req.file.buffer.toString('base64'));
-
 	const { title, price, image, category } = req.body;
-
-	console.log('category', category);
 
 	db('categories').where({ name: category }).then((category) => {
 		db('products')

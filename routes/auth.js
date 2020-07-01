@@ -37,8 +37,6 @@ router.get('/signup', (req, res) => {
 });
 
 router.post('/signup', (req, res) => {
-	console.log('req.body', req.body);
-
 	const { name, email, password } = req.body;
 
 	db('users').insert({ name: name, email: email, password: password }).returning('*').then((data) => {
