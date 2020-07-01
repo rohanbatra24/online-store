@@ -1,18 +1,26 @@
-module.exports = function(cookie, coreView) {
+module.exports = function(user, coreView) {
 	function renderAuth() {
-		if (cookie) {
+		if (user) {
+			console.log('user', user);
 			return `
+            <div>
+            <span>Logged in as ${user}</span>
             <a href='logout'><button type="button" class="btn btn-info btn-sm m-4">
           <span class="glyphicon glyphicon-log-out" id='logoutBtn'></span> Log out
         </button></a>
+            </div>
             `;
 		}
 		else {
 			return `
-            <a href='/login'><button type="button" class="btn btn-info btn-sm m-4">
+            <div>
+            <a href='/login'><button type="button" class="btn btn-info btn-sm m-2">
           <span class="glyphicon glyphicon-log-out" id='loginBtn'></span> Log In
         </button></a>
-            `;
+        <a href='/signup'><button type="button" class="btn btn-info btn-sm m-2">
+          <span class="glyphicon glyphicon-log-out" id='loginBtn'></span> Sign Up
+        </button></a>
+        </div>`;
 		}
 	}
 
