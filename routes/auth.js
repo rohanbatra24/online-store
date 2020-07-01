@@ -29,9 +29,9 @@ router.post('/login', (req, res) => {
 		const arr = dbPass.split('.');
 		const [ hashed, salt ] = arr;
 
-		const suppliedScrypt = (await scrypt(supplied, salt, 64)).toString('hex');
+		const suppliedHashedBuf = await scrypt(supplied, salt, 64);
 
-		return hashed.toString('hex') === suppliedScrypt;
+		return hashed === suppliedHashedBuf.toString('hex');
 	};
 
 	db.select('*').table('users').where({ email: req.body.email }).then(async (data) => {
@@ -55,7 +55,7 @@ router.get('/signup', (req, res) => {
 });
 
 router.post('/signup', async (req, res) => {
-	const { name, email, password } = req.body;
+	const { name, email, password, passwordConfirmation } = req.body;
 
 	const salt = crypto.randomBytes(8).toString('hex');
 
