@@ -8,11 +8,19 @@ const bodyParser = require('body-parser');
 
 const cookieParser = require('cookie-parser');
 
+const cookieSession = require('cookie-session');
+
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(bodyParser.json());
 
 app.use(cookieParser());
+
+app.use(
+	cookieSession({
+		keys : [ 'bytfi76g86f8og7hgo' ]
+	})
+);
 
 app.use(cors());
 
