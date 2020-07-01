@@ -13,8 +13,6 @@ const addProduct = require('../views/admin/addProduct');
 const adminCategories = require('../views/admin/adminCategories');
 
 router.get('/admin', (req, res) => {
-	console.log('db', db.select);
-
 	const categories = [];
 
 	db
@@ -31,7 +29,7 @@ router.get('/admin', (req, res) => {
 				.table('products')
 				.join('categories', 'categories.id', '=', 'category_id')
 				.then((products) => {
-					res.send(admin(req.cookies.userId, products));
+					res.send(admin(req.cookies.userName, products));
 				})
 				.catch((err) => console.log('err', err));
 		})
@@ -46,12 +44,12 @@ router.get('/admin/addproduct', (req, res) => {
 			categories.push(key.name);
 		}
 
-		res.send(addProduct(req.cookies.userId, categories));
+		res.send(addProduct(req.cookies.userName, categories));
 	});
 });
 
 router.get('/admin/addcategory', (req, res) => {
-	res.send(addcategory(req.cookies.userId));
+	res.send(addcategory(req.cookies.userName));
 });
 
 router.post('/admin/deletecategory/:id', (req, res) => {
@@ -99,7 +97,7 @@ router.get('/admin/categories', (req, res) => {
 	db
 		.select('*')
 		.table('categories')
-		.then((categoriesList) => res.send(adminCategories(req.cookies.userId, categoriesList)));
+		.then((categoriesList) => res.send(adminCategories(req.cookies.userName, categoriesList)));
 });
 
 module.exports = router;
