@@ -26,6 +26,11 @@ module.exports = function(user) {
         <input type="password" class="form-control" name="password" id="exampleInputPassword1" placeholder="Password">
         </div>
 
+        <div class="form-group">
+        <label for="">Confirm Password</label>
+        <input type="password" class="form-control" name="passwordConfirmation" id="exampleInputPassword1" placeholder="Confirm Password">
+        </div>
+
         <div class="form-check">
         <input type="checkbox" class="form-check-input" id="exampleCheck1">
         <label class="form-check-label" for="exampleCheck1">Remember me</label>
