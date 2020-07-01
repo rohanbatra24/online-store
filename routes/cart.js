@@ -7,16 +7,14 @@ const { db } = require('./db/database');
 const cart = require('../views/products/cart');
 
 router.get('/cart', (req, res) => {
-	const cookie = req.cookies;
-
-	if (cookie.userId) {
+	if (req.session.userId) {
 		db('cart')
 			.join('cartitems', 'cart.id', '=', 'cart_id')
 			.join('products', 'products.id', '=', 'product_id')
 			.from('cart')
-			.where({ user_id: cookie.userId })
+			.where({ user_id: req.session.userId })
 			.select('*', 'cartitems.id')
-			.then((data) => res.send(cart(req.cookies.userName, data)));
+			.then((data) => res.send(cart(req.session.userName, data)));
 	}
 	else {
 		res.redirect('/login');
@@ -49,7 +47,7 @@ router.post('/addtocart/:id', (req, res) => {
 
 	const productId = req.params.id;
 
-	const userId = req.cookies.userId;
+	const userId = req.session.userId;
 
 	let cartId;
 
