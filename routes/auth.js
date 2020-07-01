@@ -25,13 +25,27 @@ router.get('/logout', (req, res) => {
 });
 
 router.post('/login', (req, res) => {
-	db.select('*').table('users').where({ email: req.body.email, password: req.body.password }).then((data) => {
+	const comparePasswords = async (dbPass, supplied) => {
+		const arr = dbPass.split('.');
+		const [ hashed, salt ] = arr;
+
+		const suppliedScrypt = (await scrypt(supplied, salt, 64)).toString('hex');
+
+		return hashed.toString('hex') === suppliedScrypt;
+	};
+
+	db.select('*').table('users').where({ email: req.body.email }).then(async (data) => {
 		if (data.length) {
-			req.session = { userId: data[0].id, userName: data[0].name };
-			res.redirect('/');
+			if (await comparePasswords(data[0].password, req.body.password)) {
+				req.session = { userId: data[0].id, userName: data[0].name };
+				res.redirect('/');
+			}
+			else {
+				res.send('wrong password');
+			}
 		}
 		else {
-			res.send('User email and password do not match');
+			res.send('User email does not exist');
 		}
 	});
 });
