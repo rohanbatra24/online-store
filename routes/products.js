@@ -11,11 +11,8 @@ const categories = require('../views/products/categories');
 const categoryView = require('../views/products/categoryView');
 
 router.get('/', (req, res) => {
-	console.log('db', db.select);
-	const cookie = req.cookies;
-
-	if (cookie.userId) {
-		db.select('*').table('products').then((products) => res.send(homepage(cookie, products)));
+	if (req.cookies.userId) {
+		db.select('*').table('products').then((products) => res.send(homepage(req.cookies.userName, products)));
 	}
 	else {
 		res.redirect('/login');
@@ -26,7 +23,7 @@ router.get('/categories', (req, res) => {
 	db
 		.select('*')
 		.table('categories')
-		.then((categoriesList) => res.send(categories(req.cookies.userId, categoriesList)));
+		.then((categoriesList) => res.send(categories(req.cookies.userName, categoriesList)));
 });
 
 router.get('/categories/:id', (req, res) => {
@@ -37,7 +34,7 @@ router.get('/categories/:id', (req, res) => {
 		.table('categories')
 		.join('products', 'categories.id', '=', 'category_id')
 		.where({ category_id: catId })
-		.then((products) => res.send(categoryView(req.cookies.userId, products)));
+		.then((products) => res.send(categoryView(req.cookies.userName, products)));
 });
 
 module.exports = router;

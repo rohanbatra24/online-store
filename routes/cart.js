@@ -16,7 +16,7 @@ router.get('/cart', (req, res) => {
 			.from('cart')
 			.where({ user_id: cookie.userId })
 			.select('*', 'cartitems.id')
-			.then((data) => res.send(cart(req.cookies.userId, data)));
+			.then((data) => res.send(cart(req.cookies.userName, data)));
 	}
 	else {
 		res.redirect('/login');
