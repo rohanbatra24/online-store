@@ -4,10 +4,6 @@ const app = express();
 
 const cors = require('cors');
 
-const multer = require('multer');
-
-const upload = multer({ storage: multer.memoryStorage() });
-
 const bodyParser = require('body-parser');
 
 const cookieParser = require('cookie-parser');
@@ -35,12 +31,6 @@ app.use(authRouter);
 app.use(cartRouter);
 
 app.use(adminRouter);
-
-app.post('/upload', upload.single('avatar'), function(req, res, next) {
-	// req.file is the `avatar` file
-	console.log(req.file);
-	// req.body will hold the text fields, if there were any
-});
 
 app.listen(3000, () => {
 	console.log('App listening on port 3000!');
