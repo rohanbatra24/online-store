@@ -28,34 +28,51 @@ router.get('/logout', (req, res) => {
 	res.redirect('/');
 });
 
-router.post('/login', (req, res) => {
-	const comparePasswords = async (dbPass, supplied) => {
-		const arr = dbPass.split('.');
-		const [ hashed, salt ] = arr;
+router.post(
+	'/login',
+	[
+		check('email')
+			.trim()
+			.normalizeEmail()
+			.isEmail()
+			.withMessage('Must provide a valid email')
+			.custom(async (email) => {
+				const user = await db('users').select('*').where({ email: email });
+				if (!user.length) {
+					throw new Error('Email not found');
+				}
+			}),
+		check('password').trim().custom(async (password, { req }) => {
+			const comparePasswords = async (dbPass, supplied) => {
+				const [ hashed, salt ] = dbPass.split('.');
+				const suppliedHashedBuf = await scrypt(supplied, salt, 64);
+				return hashed === suppliedHashedBuf.toString('hex');
+			};
 
-		const suppliedHashedBuf = await scrypt(supplied, salt, 64);
+			const user = await db.select('*').table('users').where({ email: req.body.email });
 
-		return hashed === suppliedHashedBuf.toString('hex');
-	};
-
-	db.select('*').table('users').where({ email: req.body.email }).then(async (data) => {
-		if (data.length) {
-			if (await comparePasswords(data[0].password, req.body.password)) {
-				req.session = { userId: data[0].id, userName: data[0].name };
-				res.redirect('/');
+			if ((await comparePasswords(user[0].password, password)) === false) {
+				throw new Error('Passwords must match');
 			}
-			else {
-				res.send('wrong password');
-			}
+		})
+	],
+	async (req, res) => {
+		const errors = validationResult(req);
+
+		if (!errors.isEmpty()) {
+			console.log('not empty');
+			return res.send(login(req.session.userName, errors.mapped()));
 		}
-		else {
-			res.send('User email does not exist');
-		}
-	});
-});
+
+		const user = await db.select('*').table('users').where({ email: req.body.email });
+
+		req.session = { userId: user[0].id, userName: user[0].name };
+		res.redirect('/');
+	}
+);
 
 router.get('/signup', (req, res) => {
-	res.send(signup());
+	res.send(signup(req.session.userName));
 });
 
 router.post(
@@ -70,10 +87,9 @@ router.post(
 		const { name, email, password } = req.body;
 
 		const errors = validationResult(req);
-		console.log('errors', errors.mapped());
 
 		if (!errors.isEmpty()) {
-			return res.send(signup(errors.mapped()));
+			return res.send(signup(req.session.userName, errors.mapped()));
 		}
 
 		const salt = crypto.randomBytes(8).toString('hex');
