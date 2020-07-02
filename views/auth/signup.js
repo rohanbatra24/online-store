@@ -1,13 +1,16 @@
 const layout = require('../layout');
 
 const displayErrors = (err, field) => {
-	if (err[field]) {
+	try {
+		console.log('err', err);
 		return `<span>${err[field].msg}</span>`;
+	} catch (err) {
+		return '';
 	}
-	else return '';
 };
 
-module.exports = function(errors, user) {
+module.exports = function(user, errors) {
+	console.log('errors', errors);
 	return layout(
 		user,
 		`
