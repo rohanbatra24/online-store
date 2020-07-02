@@ -3,7 +3,7 @@ const layout = require('../layout');
 module.exports = function(user, errors) {
 	const displayErrors = (err, field) => {
 		try {
-			return `<span>${err[field].msg}</span>`;
+			return `<p class='m-2 text-danger'>${err[field].msg}</p>`;
 		} catch (err) {
 			return '';
 		}
@@ -29,15 +29,18 @@ module.exports = function(user, errors) {
         <input type="password" class="form-control" name="password" id="exampleInputPassword1" placeholder="Password">
         </div>
 
+        ${displayErrors(errors, 'password')}
+
         <div class="form-check">
         <input type="checkbox" class="form-check-input" id="exampleCheck1">
         <label class="form-check-label" for="exampleCheck1">Remember me</label>
         </div>
 
-        ${displayErrors(errors, 'password')}
 
 
-        <button type="submit" class="btn btn-primary">Sign In</button>
+        <button type="submit" class="btn btn-primary m-4">Sign In</button>
+        <button type="submit" class="btn btn-primary">Register</button>
+
     </form>
     </main>`
 	);
