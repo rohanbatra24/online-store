@@ -2,15 +2,13 @@ const layout = require('../layout');
 
 const displayErrors = (err, field) => {
 	try {
-		console.log('err', err);
-		return `<span>${err[field].msg}</span>`;
+		return `<p class='m-1 text-danger'>${err[field].msg}</p>`;
 	} catch (err) {
 		return '';
 	}
 };
 
 module.exports = function(user, errors) {
-	console.log('errors', errors);
 	return layout(
 		user,
 		`
@@ -18,9 +16,6 @@ module.exports = function(user, errors) {
     <main class="d-flex flex-column align-items-center">
     <h2 class="text-center p-2">Sign up for an account!</h2>
     <form method='POST' action='/signup'>
-        
-    
-       
 
         <div class="form-group">
             <label for="name">Name</label>
