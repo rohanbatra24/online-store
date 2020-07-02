@@ -5,7 +5,7 @@ module.exports = function(user, coreView) {
 			return `
             <div>
             <span>Logged in as ${user}</span>
-            <a href='logout'><button type="button" class="btn btn-info btn-sm m-4">
+            <a href='../logout'><button type="button" class="btn btn-info btn-sm m-4">
           <span class="glyphicon glyphicon-log-out" id='logoutBtn'></span> Log out
         </button></a>
             </div>
@@ -18,7 +18,7 @@ module.exports = function(user, coreView) {
           <span class="glyphicon glyphicon-log-out" id='loginBtn'></span> Log In
         </button></a>
         <a href='/signup'><button type="button" class="btn btn-info btn-sm m-2">
-          <span class="glyphicon glyphicon-log-out" id='loginBtn'></span> Sign Up
+          <span class="glyphicon glyphicon-log-out" id='loginBtn'></span> Register
         </button></a>
         </div>`;
 		}
