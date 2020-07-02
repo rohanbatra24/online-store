@@ -1,6 +1,6 @@
 const layout = require('../layout');
 
-module.exports = function(user, products) {
+module.exports = function(user, products, error) {
 	const productList = products
 		.map((product) => {
 			return `
@@ -13,14 +13,20 @@ module.exports = function(user, products) {
 		})
 		.join('');
 
+	const accessError = (error) => {
+		if (error) {
+			return `<p class='text-danger m-3'>Sorry! You do not have admin access. Please log in with the admin account.</p>`;
+		}
+		else return '';
+	};
+
 	return layout(
 		user,
 		`
-    
-    
-    
     <div class="d-flex flex-column align-items-center">
         <h1 class="mt2 mb0 f6 fw4 ttu tracked">ADMIN PANEL</h1>
+
+        ${accessError(error)}
               
         <div class="pa4">
         <div class="overflow-auto">
