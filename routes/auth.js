@@ -51,8 +51,12 @@ router.post(
 
 			const user = await db.select('*').table('users').where({ email: req.body.email });
 
+			if (!user[0]) {
+				throw new Error('Invalid Password');
+			}
+
 			if ((await comparePasswords(user[0].password, password)) === false) {
-				throw new Error('Passwords must match');
+				throw new Error('Invalid password');
 			}
 		})
 	],
