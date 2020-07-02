@@ -1,6 +1,14 @@
 const layout = require('../layout');
 
-module.exports = function(user) {
+module.exports = function(user, errors) {
+	const displayErrors = (err, field) => {
+		try {
+			return `<span>${err[field].msg}</span>`;
+		} catch (err) {
+			return '';
+		}
+	};
+
 	return layout(
 		user,
 		`
@@ -14,6 +22,8 @@ module.exports = function(user) {
             <small id="emailHelp" class="form-text text-muted">We will never share your email with anyone else.</small>
         </div>
 
+        ${displayErrors(errors, 'email')}
+
         <div class="form-group">
         <label for="exampleInputPassword1">Password</label>
         <input type="password" class="form-control" name="password" id="exampleInputPassword1" placeholder="Password">
@@ -23,6 +33,9 @@ module.exports = function(user) {
         <input type="checkbox" class="form-check-input" id="exampleCheck1">
         <label class="form-check-label" for="exampleCheck1">Remember me</label>
         </div>
+
+        ${displayErrors(errors, 'password')}
+
 
         <button type="submit" class="btn btn-primary">Sign In</button>
     </form>
