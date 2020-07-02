@@ -28,52 +28,18 @@ router.get('/logout', (req, res) => {
 	res.redirect('/');
 });
 
-router.post(
-	'/login',
-	[
-		check('email')
-			.trim()
-			.normalizeEmail()
-			.isEmail()
-			.withMessage('Must provide a valid email')
-			.custom(async (email) => {
-				const user = await db('users').select('*').where({ email: email });
-				if (!user.length) {
-					throw new Error('Email not found');
-				}
-			}),
-		check('password').trim().custom(async (password, { req }) => {
-			const comparePasswords = async (dbPass, supplied) => {
-				const [ hashed, salt ] = dbPass.split('.');
-				const suppliedHashedBuf = await scrypt(supplied, salt, 64);
-				return hashed === suppliedHashedBuf.toString('hex');
-			};
+router.post('/login', [ validators.requireEmailExists, validators.requireValidPassword ], async (req, res) => {
+	const errors = validationResult(req);
 
-			const user = await db.select('*').table('users').where({ email: req.body.email });
-
-			if (!user[0]) {
-				throw new Error('Invalid Password');
-			}
-
-			if ((await comparePasswords(user[0].password, password)) === false) {
-				throw new Error('Invalid password');
-			}
-		})
-	],
-	async (req, res) => {
-		const errors = validationResult(req);
-
-		if (!errors.isEmpty()) {
-			console.log('not empty');
-			return res.send(login(req.session.userName, errors.mapped()));
-		}
-
-		const user = await db.select('*').table('users').where({ email: req.body.email });
-
-		req.session = { userId: user[0].id, userName: user[0].name };
-		res.redirect('/');
+	if (!errors.isEmpty()) {
+		return res.send(login(req.session.userName, errors.mapped()));
 	}
-);
+
+	const user = await db.select('*').table('users').where({ email: req.body.email });
+
+	req.session = { userId: user[0].id, userName: user[0].name };
+	res.redirect('/');
+});
 
 router.get('/signup', (req, res) => {
 	res.send(signup(req.session.userName));
