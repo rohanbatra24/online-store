@@ -1,14 +1,11 @@
 module.exports = function(user, coreView) {
 	function renderAuth() {
 		if (user) {
-			console.log('user', user);
 			return `
-            <div>
             <span>Logged in as ${user}</span>
             <a href='../logout'><button type="button" class="btn btn-info btn-sm m-4">
           <span class="glyphicon glyphicon-log-out" id='logoutBtn'></span> Log out
         </button></a>
-            </div>
             `;
 		}
 		else {
@@ -17,7 +14,7 @@ module.exports = function(user, coreView) {
             <a href='/login'><button type="button" class="btn btn-info btn-sm m-2">
           <span class="glyphicon glyphicon-log-out" id='loginBtn'></span> Log In
         </button></a>
-        <a href='/signup'><button type="button" class="btn btn-info btn-sm m-2">
+        <a href='/signup'><button type="button" class="btn btn-info btn-sm mr-3">
           <span class="glyphicon glyphicon-log-out" id='loginBtn'></span> Register
         </button></a>
         </div>`;
@@ -38,21 +35,7 @@ module.exports = function(user, coreView) {
 
         <header class="bg-white black-80 tc pv4 avenir">
             
-
-            <div class='d-flex justify-content-between align-items-center'>
-
-            <div class="dropdown m-4">
-            <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Admin
-            </button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item" href="/admin">Admin Panel</a>
-                <a class="dropdown-item" href="/admin">Edit Products</a>
-                <a class="dropdown-item" href="/admin/categories">Edit Categories</a>
-            </div>
-            </div>
-
-            
+            <div class='d-flex justify-content-center'>
             
             <div class='d-flex flex-column'>
             <h1 class="mt2 mb0 baskerville i fw1 f1">E-Commerce App</h1>
@@ -66,12 +49,25 @@ module.exports = function(user, coreView) {
             <a class="text-decoration-none f6 f5-l link bg-animate black-80 hover-bg-light-yellow dib pa3 ph4-l" href="/contact">Locations</a>
             <a class="text-decoration-none f6 f5-l link bg-animate black-80 hover-bg-light-blue dib pa3 ph4-l" href="/about">About Us</a>
 
-            
             </nav>
             
             </div>
-            
+
+            <div class='d-flex align-items-center position-absolute right-0'>
             ${renderAuth()}
+            <div class="dropdown mr-5">
+            <button class="btn-sm btn-success dropdown-toggle mr-lg-4" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Admin
+            </button>
+            <div class="dropdown-menu m-2" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="/admin">Admin Panel</a>
+                <a class="dropdown-item" href="/admin">Edit Products</a>
+                <a class="dropdown-item" href="/admin/categories">Edit Categories</a>
+            </div>
+            </div>
+
+            </div>
+            
         
 
         
