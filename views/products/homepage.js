@@ -4,7 +4,7 @@ module.exports = function(user, products) {
 	const productList = products
 		.map((product) => {
 			return `
-    <article class="br2 ba dark-gray b--black-10 mv4 w-100 w-50-m w-25-l mw5 center">
+    <article class="br2 ba dark-gray b--black-10 mv4 w-100 w-50-m w-25-l mw5 center h-100">
         <img src="${product.image}" class="db w-100 br2 br--top" alt="">
         <div class="pa2 ph3-ns pb3-ns">
           <div class="dt w-100 mt1">
@@ -12,10 +12,10 @@ module.exports = function(user, products) {
               <h1 class="f5 f4-ns mv0">${product.title}</h1>
             </div>
             <div class="dtc tr">
-              <h2 class="f5 mv0">${product.price}</h2>
+              <h2 class="f5 mv0 mr-5">$ ${product.price}</h2>
             </div>
           </div>
-          <p class="f6 lh-copy measure mt2 mid-gray">
+          <p class="f6 lh-copy measure mt2 mid-gray text-left ml-3">
             If it fits, i sits burrow under covers. Destroy couch leave hair everywhere,
             and touch water with paw then recoil in horror.
           </p>
