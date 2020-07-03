@@ -131,9 +131,14 @@ router.post('/admin/addproduct', (req, res) => {
 router.post('/admin/addcategory', (req, res) => {
 	const { name } = req.body;
 
-	db('categories').insert({ name: name }).returning('*').then((data) => {
-		res.redirect('/categories');
-	});
+	if (req.session.userName === 'Admin') {
+		db('categories').insert({ name: name }).returning('*').then((data) => {
+			res.redirect('/categories');
+		});
+	}
+	else {
+		res.send(addcategory(req.session.userName, 'error'));
+	}
 });
 
 router.get('/admin/categories', (req, res) => {
