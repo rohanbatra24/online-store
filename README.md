@@ -7,12 +7,12 @@ Features include user login/registration, ability to save cart for later, admin 
 
 ## Final Product
 
-!["Home Page"]()
-!["Cart"]()
-!["Categories"]()
-!["Admin Panel"]()
-!["Register Page"]()
-!["Add Product"]()
+!["Home Page"](https://github.com/rohanbatra24/online-store/blob/master/assets/screenshots/home-page.png?raw=true)
+!["Cart"](https://github.com/rohanbatra24/online-store/blob/master/assets/screenshots/cart.png?raw=true)
+!["Categories"](https://github.com/rohanbatra24/online-store/blob/master/assets/screenshots/categories.png?raw=true)
+!["Admin Panel"](https://github.com/rohanbatra24/online-store/blob/master/assets/screenshots/admin-panel.png?raw=true)
+!["Register Page"](https://github.com/rohanbatra24/online-store/blob/master/assets/screenshots/register-page.png?raw=true)
+!["Add Product"](https://github.com/rohanbatra24/online-store/blob/master/assets/screenshots/add-product.png?raw=true)
 
 ## Tools
 
