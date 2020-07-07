@@ -14,7 +14,7 @@ module.exports = function(user, cart) {
 	      <td class="pv3 pr3 bb b--black-20">${item.price} x ${item.quantity} = $${Number(
 				item.price.replace(/[^0-9\.-]+/g, '')
 			) * item.quantity}</td>
-      <td class="pv3 pr3 bb b--black-20"><form method='POST' action="/removecartitem/${item.id}"> <button type='submit' class="btn-xs btn-warning">Remove</button></form></td>
+      <td class="pv3 pr3 bb b--black-20"><form method='POST' action="/removecartitem/${item.id}"> <button type='submit' class="btn-xs btn-danger br-pill ml-2">Remove</button></form></td>
 	    </tr>
     `;
 		})
@@ -34,17 +34,16 @@ module.exports = function(user, cart) {
           <th class="fw6 bb b--black-20 tl pb3 pr3 bg-white">Quantity</th>
           <th class="fw6 bb b--black-20 tl pb3 pr3 bg-white">Total</th>
           <th class="fw6 bb b--black-20 tl pb3 pr3 bg-white"></th>
-
         </tr>
       </thead>
       <tbody class="lh-copy">
       ${cartList}
       <tr>
-        <td class="pv3 pr3 bb b--black-20">Grand total</td>
+        <td class="pv3 pr3 bb b--black-20 font-weight-bold">Grand total</td>
       <td class="pv3 pr3 bb b--black-20"></td>
       <td class="pv3 pr3 bb b--black-20"></td>
-      <td class="pv3 pr3 bb b--black-20">$${GrandTotal}</td>
-      <td class="pv3 pr3 bb b--black-20"><button type='submit' class="btn-sm btn-success">Checkout</button></td>
+      <td class="pv3 pr3 bb b--black-20 font-weight-bold">$${GrandTotal}</td>
+      <td class="pv3 pr3 bb b--black-20"><button type='submit' class="btn-sm btn-success ">Checkout</button></td>
 
     </tr>
     </tbody>
