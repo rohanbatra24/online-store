@@ -54,7 +54,7 @@ module.exports = function(user, errors) {
         <label class="form-check-label" for="exampleCheck1">Remember me</label>
         </div>
 
-        <button type="submit" class="btn btn-primary">Sign In</button>
+        <button type="submit" class="btn btn-primary">Register</button>
     </form>
     </main>`
 	);
