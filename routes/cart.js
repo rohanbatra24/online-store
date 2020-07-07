@@ -47,6 +47,8 @@ router.post('/addtocart/:id', (req, res) => {
 
 	const productId = req.params.id;
 
+	console.log('req.params.id', req.params.id);
+
 	const userId = req.session.userId;
 
 	let cartId;
@@ -84,6 +86,7 @@ router.post('/addtocart/:id', (req, res) => {
 							})
 							.select('id', 'title', 'price')
 							.then((data) => {
+								console.log('data', data);
 								db('cartitems')
 									.insert({
 										cart_id    : cartId,
