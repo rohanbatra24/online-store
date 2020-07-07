@@ -25,7 +25,7 @@ router.get('/admin', (req, res) => {
 		})
 		.then(() => {
 			db
-				.select('products.id', 'title', 'image', 'price', 'category_id', 'name')
+				.select('products.id', 'title', 'products.image', 'price', 'category_id', 'name')
 				.table('products')
 				.join('categories', 'categories.id', '=', 'category_id')
 				.then((products) => {
