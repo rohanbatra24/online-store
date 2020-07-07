@@ -11,10 +11,13 @@ const categories = require('../views/products/categories');
 const categoryView = require('../views/products/categoryView');
 
 router.get('/', (req, res) => {
-	db.select('*').table('products').join('categories', 'categories.id', '=', 'category_id').then((products) => {
-		console.log('products', products);
-		res.send(homepage(req.session.userName, products));
-	});
+	db
+		.select('*', 'products.id', 'products.image')
+		.table('products')
+		.join('categories', 'categories.id', '=', 'category_id')
+		.then((products) => {
+			res.send(homepage(req.session.userName, products));
+		});
 });
 
 router.get('/categories', (req, res) => {
