@@ -10,6 +10,8 @@ const cookieParser = require('cookie-parser');
 
 const cookieSession = require('cookie-session');
 
+app.use(express.static('public'));
+
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(bodyParser.json());
