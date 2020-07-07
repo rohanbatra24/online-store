@@ -24,10 +24,11 @@ module.exports = function(user, coreView) {
 	return `
     <!DOCTYPE html>
         <html lang="en">  
-
+        
         <head>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <link rel="stylesheet" href="https://unpkg.com/tachyons/css/tachyons.min.css">
+        <link rel="stylesheet" href="/index.css">
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Ecommerce app</title>
@@ -38,16 +39,16 @@ module.exports = function(user, coreView) {
             <div class='d-flex justify-content-center'>
             
             <div class='d-flex flex-column'>
-            <h1 class="mt2 mb0 baskerville i fw1 f1">E-Commerce App</h1>
+            <h1 class="mt2 mb0 baskerville i fw1 f1">Online Store</h1>
             
             <h2 class="mt2 mb0 f6 fw4 ttu tracked">one-stop shop</h2>
             
             <nav class="bt bb tc mw7 center mt4">
-            <a class="text-decoration-none f6 f5-l link bg-animate black-80 hover-bg-lightest-blue dib pa3 ph4-l" href="/">Home</a>
-            <a class="text-decoration-none f6 f5-l link bg-animate black-80 hover-bg-light-green dib pa3 ph4-l" href="/categories">Categories</a>
-            <a class="text-decoration-none f6 f5-l link bg-animate black-80 hover-bg-light-pink dib pa3 ph4-l" href="/cart">Cart</a>
-            <a class="text-decoration-none f6 f5-l link bg-animate black-80 hover-bg-light-yellow dib pa3 ph4-l" href="/contact">Locations</a>
-            <a class="text-decoration-none f6 f5-l link bg-animate black-80 hover-bg-light-blue dib pa3 ph4-l" href="/about">About Us</a>
+            <a class="noLink f6 f5-l link bg-animate black-80 hover-bg-lightest-blue dib pa3 ph4-l" href="/">Home</a>
+            <a class="noLink f6 f5-l link bg-animate black-80 hover-bg-light-green dib pa3 ph4-l" href="/categories">Categories</a>
+            <a class="noLink f6 f5-l link bg-animate black-80 hover-bg-light-pink dib pa3 ph4-l" href="/cart">Cart</a>
+            <a class="noLink f6 f5-l link bg-animate black-80 hover-bg-light-yellow dib pa3 ph4-l" href="/contact">Locations</a>
+            <a class="noLink f6 f5-l link bg-animate black-80 hover-bg-light-blue dib pa3 ph4-l" href="/about">About Us</a>
 
             </nav>
             
