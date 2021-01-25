@@ -20,6 +20,12 @@ router.get('/', (req, res) => {
 		});
 });
 
+router.get('/test', (req, res) => {
+	
+			res.send(`<h1>hello world</h1>`);
+	
+});
+
 router.get('/categories', (req, res) => {
 	db
 		.select('*')
