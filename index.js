@@ -2,6 +2,8 @@ const express = require('express');
 
 const app = express();
 
+const PORT = process.env.PORT || 3000
+
 const cors = require('cors');
 
 const bodyParser = require('body-parser');
@@ -42,6 +44,6 @@ app.use(cartRouter);
 
 app.use(adminRouter);
 
-app.listen(3000, () => {
+app.listen(PORT, () => {
 	console.log('App listening on port 3000!');
 });
