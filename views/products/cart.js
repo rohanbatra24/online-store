@@ -1,30 +1,37 @@
-const layout = require('../layout');
+const layout = require(__dirname + "../layout");
 
-module.exports = function(user, cart) {
-	let GrandTotal = 0;
+module.exports = function (user, cart) {
+  let GrandTotal = 0;
 
-	const cartList = cart
-		.map((item) => {
-			GrandTotal += Number(item.price.replace(/[^0-9\.-]+/g, '')) * item.quantity;
-			return `
+  const cartList = cart
+    .map((item) => {
+      GrandTotal +=
+        Number(item.price.replace(/[^0-9\.-]+/g, "")) * item.quantity;
+      return `
       <tr>
-      <td class="pv3 pr3 bb b--black-20"><img src=${item.image} class="mw3-l" alt="night sky over water"></td>
+      <td class="pv3 pr3 bb b--black-20"><img src=${
+        item.image
+      } class="mw3-l" alt="night sky over water"></td>
 
 	      <td class="pv3 pr3 bb b--black-20">${item.title}</td>
 	      <td class="pv3 pr3 bb b--black-20">${item.price}</td>
 	      <td class="pv3 pr3 bb b--black-20">${item.quantity}</td>
-	      <td class="pv3 pr3 bb b--black-20">${item.price} x ${item.quantity} = $<span class='font-weight-bold'>${Number(
-				item.price.replace(/[^0-9\.-]+/g, '')
-			) * item.quantity}</span></td>
-      <td class="pv3 pr3 bb b--black-20"><form method='POST' action="/removecartitem/${item.id}"> <button type='submit' class="btn-xs btn-danger br-pill ml-2">Remove</button></form></td>
+	      <td class="pv3 pr3 bb b--black-20">${item.price} x ${
+        item.quantity
+      } = $<span class='font-weight-bold'>${
+        Number(item.price.replace(/[^0-9\.-]+/g, "")) * item.quantity
+      }</span></td>
+      <td class="pv3 pr3 bb b--black-20"><form method='POST' action="/removecartitem/${
+        item.id
+      }"> <button type='submit' class="btn-xs btn-danger br-pill ml-2">Remove</button></form></td>
 	    </tr>
     `;
-		})
-		.join('');
+    })
+    .join("");
 
-	return layout(
-		user,
-		`
+  return layout(
+    user,
+    `
     
     <h1 class="mt2 mb0 ttu tracked text-center">Your Cart</h1>
   <div class="pa4">
@@ -59,5 +66,5 @@ module.exports = function(user, cart) {
   </div>
   </div>
   `
-	);
+  );
 };

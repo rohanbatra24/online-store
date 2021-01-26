@@ -1,9 +1,9 @@
-const layout = require('../layout');
+const layout = require(__dirname + "../layout");
 
-module.exports = function(user, categories) {
-	const categoryList = categories
-		.map((category) => {
-			return `
+module.exports = function (user, categories) {
+  const categoryList = categories
+    .map((category) => {
+      return `
     <article class="br2 ba dark-gray b--black-10 mv4 w-100 w-50-m w-25-l mw5 center">
         <img src=${category.image} class="db w-100 br2 br--top" alt="">
         <div class="pa2 ph3-ns pb3-ns">
@@ -24,13 +24,13 @@ module.exports = function(user, categories) {
         </div>
         
     </article>`;
-		})
-		.join('');
+    })
+    .join("");
 
-	return layout(
-		user,
-		`<div class="tc">
+  return layout(
+    user,
+    `<div class="tc">
         <ul class="flex flex-wrap justify-around">${categoryList}</ul>
     </div>`
-	);
+  );
 };

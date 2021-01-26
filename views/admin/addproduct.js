@@ -1,21 +1,20 @@
-const layout = require('../layout');
+const layout = require(__dirname + "../layout");
 
-module.exports = function(user, categories, error) {
-	const categoriesList = categories.map((category) => {
-		return `
+module.exports = function (user, categories, error) {
+  const categoriesList = categories.map((category) => {
+    return `
     <option value="${category}">${category}</option>`;
-	});
+  });
 
-	const accessError = (error) => {
-		if (error) {
-			return `<p class='text-danger m-3'>Sorry! You do not have admin access. Please log in with the admin account.</p>`;
-		}
-		else return '';
-	};
+  const accessError = (error) => {
+    if (error) {
+      return `<p class='text-danger m-3'>Sorry! You do not have admin access. Please log in with the admin account.</p>`;
+    } else return "";
+  };
 
-	return layout(
-		user,
-		`
+  return layout(
+    user,
+    `
   <div class="d-flex flex-column align-items-center">
   <h1>ADMIN PANEL</h1>
   <h3 class="text-info">Add a new product</h3>
@@ -64,5 +63,5 @@ module.exports = function(user, categories, error) {
     
 
   `
-	);
+  );
 };

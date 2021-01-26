@@ -2,13 +2,13 @@ const express = require("express");
 
 const router = express.Router();
 
-const { db } = require("./db/database");
+const { db } = require(__dirname + "./db/database");
 
-const homepage = require("../views/products/homepage");
+const homepage = require(__dirname + "../views/products/homepage");
 
-const categories = require("../views/products/categories");
+const categories = require(__dirname + "../views/products/categories");
 
-const categoryView = require("../views/products/categoryView");
+const categoryView = require(__dirname + "../views/products/categoryView");
 
 router.get("/", (req, res) => {
   // db

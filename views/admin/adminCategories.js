@@ -1,27 +1,26 @@
-const layout = require('../layout');
+const layout = require(__dirname + "../layout");
 
-module.exports = function(user, categories, error) {
-	const categoryList = categories
-		.map((category) => {
-			return `
+module.exports = function (user, categories, error) {
+  const categoryList = categories
+    .map((category) => {
+      return `
         <tr>
             <td class="pv3 pr3 bb b--black-20">${category.name}</td>
             <td class="pv3 pr3 bb b--black-20"># of items</td>
             <td class="pv3 pr3 bb b--black-20"><form method='POST' action="/admin/deletecategory/${category.id}"> <button type='submit' class="btn-sm btn-danger">Delete</button></form></td>
           </tr>`;
-		})
-		.join('');
+    })
+    .join("");
 
-	const accessError = (error) => {
-		if (error) {
-			return `<p class='text-danger m-3'>Sorry! You do not have admin access. Please log in with the admin account.</p>`;
-		}
-		else return '';
-	};
+  const accessError = (error) => {
+    if (error) {
+      return `<p class='text-danger m-3'>Sorry! You do not have admin access. Please log in with the admin account.</p>`;
+    } else return "";
+  };
 
-	return layout(
-		user,
-		`
+  return layout(
+    user,
+    `
 
   <div class="d-flex flex-column align-items-center">
   <h1 class="mt2 mb0 f6 fw4 ttu tracked">ADMIN PANEL</h1>
@@ -53,5 +52,5 @@ module.exports = function(user, categories, error) {
 
   </div>
     `
-	);
+  );
 };

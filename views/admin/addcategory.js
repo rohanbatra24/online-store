@@ -1,16 +1,15 @@
-const layout = require('../layout');
+const layout = require(__dirname + "../layout");
 
-module.exports = function(user, error) {
-	const accessError = (error) => {
-		if (error) {
-			return `<p class='text-danger m-3'>Sorry! You do not have admin access. Please log in with the admin account.</p>`;
-		}
-		else return '';
-	};
+module.exports = function (user, error) {
+  const accessError = (error) => {
+    if (error) {
+      return `<p class='text-danger m-3'>Sorry! You do not have admin access. Please log in with the admin account.</p>`;
+    } else return "";
+  };
 
-	return layout(
-		user,
-		`
+  return layout(
+    user,
+    `
     ${accessError(error)}
 
   <body class="d-flex flex-column align-items-center">
@@ -24,5 +23,5 @@ module.exports = function(user, error) {
 </body>
 
     `
-	);
+  );
 };

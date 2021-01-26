@@ -1,17 +1,17 @@
-const layout = require('../layout');
+const layout = require(__dirname + "../layout");
 
 const displayErrors = (err, field) => {
-	try {
-		return `<p class='m-1 text-danger'>${err[field].msg}</p>`;
-	} catch (err) {
-		return '';
-	}
+  try {
+    return `<p class='m-1 text-danger'>${err[field].msg}</p>`;
+  } catch (err) {
+    return "";
+  }
 };
 
-module.exports = function(user, errors) {
-	return layout(
-		user,
-		`
+module.exports = function (user, errors) {
+  return layout(
+    user,
+    `
     
     <main class="d-flex flex-column align-items-center">
     <h2 class="text-center p-2">Sign up for an account!</h2>
@@ -22,7 +22,7 @@ module.exports = function(user, errors) {
             <input type="text" class="form-control" id="name" name="name" aria-describedby="emailHelp" placeholder="Enter name">
         </div>
 
-        ${displayErrors(errors, 'name')}
+        ${displayErrors(errors, "name")}
     
         <div class="form-group">
             <label for="exampleInputEmail1">Email address</label>
@@ -30,7 +30,7 @@ module.exports = function(user, errors) {
             <small id="emailHelp" class="form-text text-muted">We will never share your email with anyone else.</small>
         </div>
 
-        ${displayErrors(errors, 'email')}
+        ${displayErrors(errors, "email")}
 
 
         <div class="form-group">
@@ -38,7 +38,7 @@ module.exports = function(user, errors) {
         <input type="password" class="form-control" name="password" id="exampleInputPassword1" placeholder="Password">
         </div>
 
-        ${displayErrors(errors, 'password')}
+        ${displayErrors(errors, "password")}
 
 
         <div class="form-group">
@@ -46,7 +46,7 @@ module.exports = function(user, errors) {
         <input type="password" class="form-control" name="passwordConfirmation" id="exampleInputPassword1" placeholder="Confirm Password">
         </div>
 
-        ${displayErrors(errors, 'passwordConfirmation')}
+        ${displayErrors(errors, "passwordConfirmation")}
 
 
         <div class="form-check">
@@ -57,5 +57,5 @@ module.exports = function(user, errors) {
         <button type="submit" class="btn btn-primary">Register</button>
     </form>
     </main>`
-	);
+  );
 };

@@ -1,9 +1,9 @@
-const layout = require('../layout');
+const layout = require(__dirname + "../layout");
 
-module.exports = function(user, products, error) {
-	const productList = products
-		.map((product) => {
-			return `
+module.exports = function (user, products, error) {
+  const productList = products
+    .map((product) => {
+      return `
         <tr>
             <td class="pv3 pr3 bb b--black-20"><img src=${product.image} class="mw4-l" alt="night sky over water"></td>
             <td class="pv3 pr3 bb b--black-20">${product.title}</td>
@@ -11,19 +11,18 @@ module.exports = function(user, products, error) {
             <td class="pv3 pr3 bb b--black-20">$${product.price}</td>
             <td class="pv3 bb b--black-20 pr5"><form method='POST' action="/admin/deleteproduct/${product.id}"> <button type='submit' class="btn-xs br-pill btn-danger">Delete</button></form></td>
           </tr>`;
-		})
-		.join('');
+    })
+    .join("");
 
-	const accessError = (error) => {
-		if (error) {
-			return `<p class='text-danger m-3'>Sorry! You do not have admin access. Please log in with the admin account.</p>`;
-		}
-		else return '';
-	};
+  const accessError = (error) => {
+    if (error) {
+      return `<p class='text-danger m-3'>Sorry! You do not have admin access. Please log in with the admin account.</p>`;
+    } else return "";
+  };
 
-	return layout(
-		user,
-		`
+  return layout(
+    user,
+    `
     <div class="d-flex flex-column align-items-center">
         <h1 class="mt2 mb0 ttu tracked">ADMIN PANEL</h1>
 
@@ -58,5 +57,5 @@ module.exports = function(user, products, error) {
         </div>
       </div>
         `
-	);
+  );
 };
