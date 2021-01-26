@@ -1,4 +1,4 @@
-const layout = require(__dirname + "../layout");
+const layout = require(__dirname + "/../layout");
 
 module.exports = function (user, cart) {
   let GrandTotal = 0;

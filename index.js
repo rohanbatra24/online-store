@@ -28,13 +28,13 @@ app.use(
 
 app.use(cors());
 
-const productsRouter = require(__dirname + "./routes/products");
+const productsRouter = require(__dirname + "/routes/products");
 
-const authRouter = require(__dirname + "./routes/auth");
+const authRouter = require(__dirname + "/routes/auth");
 
-const cartRouter = require(__dirname + "./routes/cart");
+const cartRouter = require(__dirname + "/routes/cart");
 
-const adminRouter = require(__dirname + "./routes/admin");
+const adminRouter = require(__dirname + "/routes/admin");
 
 app.use(productsRouter);
 

@@ -4,11 +4,11 @@ const router = express.Router();
 
 const { db } = require(__dirname + "./db/database");
 
-const homepage = require(__dirname + "../views/products/homepage");
+const homepage = require(__dirname + "/../views/products/homepage");
 
-const categories = require(__dirname + "../views/products/categories");
+const categories = require(__dirname + "/../views/products/categories");
 
-const categoryView = require(__dirname + "../views/products/categoryView");
+const categoryView = require(__dirname + "/../views/products/categoryView");
 
 router.get("/", (req, res) => {
   // db

@@ -1,6 +1,6 @@
 const { check } = require("express-validator");
 
-const { db } = require(__dirname + "./db/database");
+const { db } = require(__dirname + "/db/database");
 
 const util = require("util"); // to promisify scrypt result
 

@@ -2,9 +2,9 @@ const express = require("express");
 
 const router = express.Router();
 
-const { db } = require(__dirname + "./db/database");
+const { db } = require(__dirname + "/db/database");
 
-const cart = require(__dirname + "../views/products/cart");
+const cart = require(__dirname + "/../views/products/cart");
 
 router.get("/cart", (req, res) => {
   if (req.session.userId) {

@@ -1,4 +1,4 @@
-const layout = require(__dirname + "../layout");
+const layout = require(__dirname + "/../layout");
 
 const displayErrors = (err, field) => {
   try {

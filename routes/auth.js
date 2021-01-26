@@ -10,13 +10,13 @@ const util = require("util"); // to promisify scrypt result
 
 const scrypt = util.promisify(crypto.scrypt);
 
-const login = require(__dirname + "../views/auth/login");
+const login = require(__dirname + "/../views/auth/login");
 
-const signup = require(__dirname + "../views/auth/signup");
+const signup = require(__dirname + "/../views/auth/signup");
 
-const { db } = require(__dirname + "./db/database");
+const { db } = require(__dirname + "/db/database");
 
-const validators = require(__dirname + "./validators");
+const validators = require(__dirname + "/validators");
 
 router.get("/login", (req, res) => {
   res.send(login(req.session.userName));

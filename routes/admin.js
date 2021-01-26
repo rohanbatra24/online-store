@@ -2,15 +2,15 @@ const express = require("express");
 
 const router = express.Router();
 
-const { db } = require(__dirname + "./db/database");
+const { db } = require(__dirname + "/db/database");
 
-const admin = require(__dirname + "../views/admin/admin");
+const admin = require(__dirname + "/../views/admin/admin");
 
 const addcategory = require(__dirname + "/../views/admin/addCategory");
 
-const addProduct = require(__dirname + "../views/admin/addProduct");
+const addProduct = require(__dirname + "/../views/admin/addProduct");
 
-const adminCategories = require(__dirname + "../views/admin/adminCategories");
+const adminCategories = require(__dirname + "/../views/admin/adminCategories");
 
 router.get("/admin", (req, res) => {
   const categories = [];
