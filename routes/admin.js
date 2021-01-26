@@ -6,9 +6,9 @@ const { db } = require(__dirname + "/db/database");
 
 const admin = require(__dirname + "/../views/admin/admin");
 
-const addcategory = require(__dirname + "/../views/admin/addCategory");
+const addcategory = require(__dirname + "/../views/admin/addcategory");
 
-const addProduct = require(__dirname + "/../views/admin/addProduct");
+const addProduct = require(__dirname + "/../views/admin/addproduct");
 
 const adminCategories = require(__dirname + "/../views/admin/adminCategories");
 
