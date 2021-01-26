@@ -2,7 +2,7 @@ const express = require("express");
 
 const router = express.Router();
 
-const { db } = require(__dirname + "./db/database");
+const { db } = require(__dirname + "/db/database");
 
 const homepage = require(__dirname + "/../views/products/homepage");
 
