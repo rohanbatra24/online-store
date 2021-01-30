@@ -15,7 +15,7 @@ module.exports = function (user, errors) {
     
     <main class="d-flex flex-column align-items-center">
     <h2 class="text-center p-2">Please log in</h2>
-    <form method='POST' action='/login'>
+    <form method='POST' action='/login' class='loginForm'>
         <div class="form-group">
             <label for="exampleInputEmail1">Email address</label>
             <input type="email" class="form-control" id="exampleInputEmail1" name="email" aria-describedby="emailHelp" placeholder="Enter email">
@@ -39,8 +39,10 @@ module.exports = function (user, errors) {
 
 
         <button type="submit" class="btn btn-primary m-4">Sign In</button>
-        <button type="submit" class="btn btn-primary">Register</button>
 
+    </form>
+    <form action="/signup">
+      <button type="submit" class="btn btn-primary m-4">Register</button>
     </form>
     </main>`
   );
