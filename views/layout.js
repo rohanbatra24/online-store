@@ -37,7 +37,7 @@ module.exports = function (user, coreView) {
         <meta 
         name=”image” 
         property=”og:image” 
-        content=”%PUBLIC_URL%/https://raw.githubusercontent.com/rohanbatra24/online-store/master/assets/screenshots/home-page.png” 
+        content=”https://raw.githubusercontent.com/rohanbatra24/online-store/master/assets/screenshots/home-page.png” 
         />
         <meta 
         name=”author” 
