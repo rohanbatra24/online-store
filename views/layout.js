@@ -22,35 +22,21 @@ module.exports = function (user, coreView) {
 
   return `
     <!DOCTYPE html>
-        <html lang="en" prefix=”og: http://ogp.me/ns#">  
+        <html lang="en" prefix="og: http://ogp.me/ns#">  
         
         <head>
-        <meta 
-        name=”image” 
-        property=”og:image” 
-        content=”https://raw.githubusercontent.com/rohanbatra24/online-store/master/assets/screenshots/home-page.png” 
-        />
-        <meta 
-        name=”author” 
-        content=”Example Author” 
-        />
-        <meta 
-        property=”og:description” 
-        content=”Example Description“
-        />
-        <meta 
-         property=”og:url” 
-        content=”https://online-store24.herokuapp.com/ 
-        />
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-        <link rel="stylesheet" href="https://unpkg.com/tachyons/css/tachyons.min.css">
-        <link rel="stylesheet" href="/index.css">
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta 
-        property=”og:title”
-        content=”Example Title” 
-        />
+            <meta property="og:title" content="Online Store" />
+            <meta property="og:description" content="Online Store" />
+            <meta property="og:url" content="https://online-store24.herokuapp.com/" />
+            <meta property="og:image" content="https://raw.githubusercontent.com/rohanbatra24/online-store/master/assets/screenshots/home-page.png" />
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+            <link rel="stylesheet" href="https://unpkg.com/tachyons/css/tachyons.min.css">
+            <link rel="stylesheet" href="/index.css">
+        
+        
         <title>Ecommerce app</title>
         </head>
 
