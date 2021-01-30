@@ -1,15 +1,14 @@
-module.exports = function(user, coreView) {
-	function renderAuth() {
-		if (user) {
-			return `
+module.exports = function (user, coreView) {
+  function renderAuth() {
+    if (user) {
+      return `
             <span>Logged in as ${user}</span>
             <a href='../logout'><button type="button" class="btn btn-info btn-sm m-4">
           <span class="glyphicon glyphicon-log-out" id='logoutBtn'></span> Log out
         </button></a>
             `;
-		}
-		else {
-			return `
+    } else {
+      return `
             <div>
             <a href='/login'><button type="button" class="btn btn-info btn-sm m-2">
           <span class="glyphicon glyphicon-log-out" id='loginBtn'></span> Log In
@@ -18,12 +17,12 @@ module.exports = function(user, coreView) {
           <span class="glyphicon glyphicon-log-out" id='loginBtn'></span> Register
         </button></a>
         </div>`;
-		}
-	}
+    }
+  }
 
-	return `
+  return `
     <!DOCTYPE html>
-        <html lang="en">  
+        <html lang="en" prefix=”og: http://ogp.me/ns#">  
         
         <head>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -31,6 +30,27 @@ module.exports = function(user, coreView) {
         <link rel="stylesheet" href="/index.css">
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta 
+        property=”og:title”
+        content=”Example Title” 
+        />
+        <meta 
+        name=”image” 
+        property=”og:image” 
+        content=”%PUBLIC_URL%/pic.png” 
+        />
+        <meta 
+        name=”author” 
+        content=”Example Author” 
+        />
+        <meta 
+        property=”og:description” 
+        content=”Example Description“
+        />
+        <meta 
+         property=”og:url” 
+        content=”https://example.com" 
+        />
         <title>Ecommerce app</title>
         </head>
 
