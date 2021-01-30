@@ -25,15 +25,6 @@ module.exports = function (user, coreView) {
         <html lang="en" prefix=”og: http://ogp.me/ns#">  
         
         <head>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-        <link rel="stylesheet" href="https://unpkg.com/tachyons/css/tachyons.min.css">
-        <link rel="stylesheet" href="/index.css">
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta 
-        property=”og:title”
-        content=”Example Title” 
-        />
         <meta 
         name=”image” 
         property=”og:image” 
@@ -50,6 +41,15 @@ module.exports = function (user, coreView) {
         <meta 
          property=”og:url” 
         content=”https://example.com" 
+        />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://unpkg.com/tachyons/css/tachyons.min.css">
+        <link rel="stylesheet" href="/index.css">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta 
+        property=”og:title”
+        content=”Example Title” 
         />
         <title>Ecommerce app</title>
         </head>
