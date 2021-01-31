@@ -12,7 +12,7 @@ module.exports = function (user, products) {
               <h1 class="f5 f4-ns mv0">${product.title}</h1>
             </div>
             <div class="dtc tr">
-              <h2 class="f5 mv0">${product.price}</h2>
+              <h2 class="f5 mv0">$${product.price}</h2>
             </div>
           </div>
           <p class="f6 lh-copy measure mt2 mid-gray">
