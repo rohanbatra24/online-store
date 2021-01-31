@@ -36,6 +36,12 @@ const cartRouter = require(__dirname + "/routes/cart");
 
 const adminRouter = require(__dirname + "/routes/admin");
 
+const aboutRouter = require(__dirname + "/routes/about");
+
+const locationsRouter = require(__dirname + "/routes/locations");
+
+app.use(aboutRouter);
+
 app.use(productsRouter);
 
 app.use(authRouter);
@@ -43,6 +49,8 @@ app.use(authRouter);
 app.use(cartRouter);
 
 app.use(adminRouter);
+
+app.use(locationsRouter);
 
 app.listen(PORT, () => {
   console.log("App listening on port 3000!");
